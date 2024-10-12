@@ -108,7 +108,6 @@ describe("getUvInfo", () => {
   it("should return 500 if fetchUVData throws an error", async () => {
     req.query = { lat: "40.7128", lng: "-74.0060", skinType: "1" };
 
-    // Mock fetchUVData to throw an error
     jest
       .spyOn(uvModule, "fetchUVData")
       .mockRejectedValue(new Error("API Error"));
