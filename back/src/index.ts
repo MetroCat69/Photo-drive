@@ -1,13 +1,21 @@
-import express from "express";
+import express, { Request, Response } from "express";
+import { getUvInfo } from "./routes/uvInfo";
+// import { SkinType } from "./types";
+import { loadEnv } from "./utils/env";
+
+loadEnv();
 
 const app = express();
+
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
   res.send("Hello, World!");
 });
 
-const PORT = 3000;
+app.get("/api/uvInfo", getUvInfo);
+
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
